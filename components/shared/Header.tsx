@@ -27,7 +27,7 @@ const Header: FC = () => {
         {/* Logo Section */}
         <Link href="/" className="flex items-center space-x-2">
           <Building2 className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold tracking-tight">CORP NAME</span>
+          <span className="text-xl font-bold tracking-tight">De Ehiedu's</span>
         </Link>
 
         {/* Desktop Navigation */}

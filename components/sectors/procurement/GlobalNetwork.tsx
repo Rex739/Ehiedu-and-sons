@@ -1,40 +1,101 @@
-import { Globe2 } from "lucide-react";
+import { Globe2, MapPin, Navigation } from "lucide-react"
 
 export function GlobalNetwork() {
+  const regions = [
+    {
+      label: "Africa",
+      stats: "Active presence in 12+ countries",
+      details:
+        "Regional headquarters and localized distribution hubs for rapid fulfillment.",
+    },
+    {
+      label: "Asia/Europe",
+      stats: "Direct Tier-1 Manufacturer Ties",
+      details:
+        "Strategic partnerships in China, Germany, and India for industrial machinery and medical tech.",
+    },
+    {
+      label: "Americas",
+      stats: "Advanced Procurement Channels",
+      details:
+        "Verified sourcing for specialized heavy equipment and pharmaceutical assets.",
+    },
+  ]
+
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
-          <div className="flex-1 space-y-8">
-            <h2 className="text-3xl font-bold">Our Global Sourcing Network</h2>
-            <div className="space-y-6">
-              {[
-                { label: "Africa", stats: "Active presence in 12+ countries" },
-                {
-                  label: "Asia/Europe",
-                  stats: "Strong manufacturer ties in China & Germany",
-                },
-                {
-                  label: "Americas",
-                  stats: "Specialized procurement for industrial machinery",
-                },
-              ].map((item) => (
+    <section className="py-24 bg-white overflow-hidden border-t border-slate-100">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row gap-20 items-center">
+          {/* Left Side: Regional Authority */}
+          <div className="flex-1 space-y-10">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <div className="h-1 w-12 bg-amber-500" />
+                <span className="text-xs font-bold uppercase tracking-[0.3em] text-blue-900">
+                  Trade Footprint
+                </span>
+              </div>
+              <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter text-blue-900 leading-[0.9]">
+                Global Sourcing <br />
+                <span className="text-amber-500">Infrastructure</span>
+              </h2>
+            </div>
+
+            <div className="grid gap-8">
+              {regions.map((item) => (
                 <div
                   key={item.label}
-                  className="border-l-4 border-primary pl-6 py-2"
+                  className="group border-l-4 border-slate-100 hover:border-amber-500 pl-8 py-2 transition-all duration-500"
                 >
-                  <h4 className="font-bold text-xl">{item.label}</h4>
-                  <p className="text-muted-foreground">{item.stats}</p>
+                  <h4 className="font-black text-2xl uppercase tracking-tight text-blue-900">
+                    {item.label}
+                  </h4>
+                  <p className="text-amber-600 font-bold text-sm uppercase tracking-widest mb-2">
+                    {item.stats}
+                  </p>
+                  <p className="text-slate-500 font-medium leading-relaxed max-w-md">
+                    {item.details}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Right Side: Technical Map/Globe Visual */}
           <div className="flex-1 relative">
-            {/* Visual representation of a globe or connecting lines */}
-            <div className="w-full aspect-square bg-slate-100 rounded-full flex items-center justify-center relative">
-              <Globe2 className="h-32 w-32 text-slate-300" />
-              <div className="absolute inset-0 border-2 border-dashed border-slate-200 rounded-full animate-[spin_20s_linear_infinite]" />
-              <div className="absolute inset-10 border border-dotted border-slate-300 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+            <div className="w-full aspect-square bg-slate-50 flex items-center justify-center relative shadow-inner overflow-hidden border border-slate-100">
+              {/* Technical Grid Overlay */}
+              <div
+                className="absolute inset-0 opacity-[0.05]"
+                style={{
+                  backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
+                  backgroundSize: "40px 40px",
+                }}
+              />
+
+              <Globe2 className="h-48 w-48 text-slate-200" />
+
+              {/* Animated Connection Rings */}
+              <div className="absolute inset-12 border-2 border-dashed border-amber-500/20 rounded-full animate-[spin_30s_linear_infinite]" />
+              <div className="absolute inset-24 border border-blue-900/10 rounded-full animate-[spin_20s_linear_infinite_reverse]" />
+
+              {/* Static Data Point Markers */}
+              <div className="absolute top-1/4 right-1/4 p-2 bg-blue-900 text-amber-500 shadow-xl">
+                <MapPin size={16} />
+              </div>
+              <div className="absolute bottom-1/3 left-1/4 p-2 bg-amber-500 text-blue-900 shadow-xl">
+                <Navigation size={16} className="rotate-45" />
+              </div>
+              <div className="absolute top-1/2 left-2/3 p-2 bg-slate-800 text-white shadow-xl">
+                <MapPin size={16} />
+              </div>
+
+              {/* Bottom Badge */}
+              <div className="absolute bottom-10 bg-white border border-slate-200 px-6 py-3 shadow-2xl">
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-900">
+                  Network Status: <span className="text-green-500">Live</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>

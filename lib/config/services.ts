@@ -15,7 +15,9 @@ export const sectors: BusinessSector[] = [
     description:
       "Development, sale, lease, and acquisition of landed properties.",
     href: "/real-estate",
-    image: "/images/real-estate.jpg", // Replace with your actual assets
+    // Bright, high-end modern residential architecture
+    image:
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop",
     features: [
       "Valuation",
       "Consultancy",
@@ -29,7 +31,9 @@ export const sectors: BusinessSector[] = [
     description:
       "Building residential, industrial, and institutional structures.",
     href: "/construction",
-    image: "/images/construction.jpg",
+    // Large scale industrial/civil engineering project
+    image:
+      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop",
     features: ["Roads & Bridges", "Structural Engineering", "Drainage Systems"],
   },
   {
@@ -38,7 +42,9 @@ export const sectors: BusinessSector[] = [
     description:
       "Management of hotels, resorts, event centers, and luxury lounges.",
     href: "/hospitality",
-    image: "/images/hospitality.jpg",
+    // Luxury resort pool area with amber sunset tones
+    image:
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop",
     features: ["Resort Management", "Event Centers", "Restaurant Operations"],
   },
   {
@@ -47,7 +53,9 @@ export const sectors: BusinessSector[] = [
     description:
       "Specialized hospital design, equipment maintenance, and medical waste management.",
     href: "/medical",
-    image: "/images/medical.jpg",
+    // High-tech, bright medical facility / laboratory
+    image:
+      "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2070&auto=format&fit=crop",
     features: ["Equipment Supply", "Hospital Furnishing", "Medical Logistics"],
   },
   {
@@ -56,7 +64,9 @@ export const sectors: BusinessSector[] = [
     description:
       "Global supply chain solutions, importing/exporting, and manufacturers' representation.",
     href: "/procurement",
-    image: "/images/procurement.jpg",
+    // Global logistics port at golden hour
+    image:
+      "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop",
     features: ["Global Sourcing", "Import & Export", "Merchant Services"],
   },
 ]

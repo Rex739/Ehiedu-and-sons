@@ -17,7 +17,7 @@ export const sectors: BusinessSector[] = [
     href: "/real-estate",
     // Bright, high-end modern residential architecture
     image:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop",
+      "https://res.cloudinary.com/dcxghlgre/image/upload/v1770529166/DeEhiedu%27s/b1d9c963-5b25-40aa-84bd-17b1c54b8165.png",
     features: [
       "Valuation",
       "Consultancy",
@@ -33,7 +33,7 @@ export const sectors: BusinessSector[] = [
     href: "/construction",
     // Large scale industrial/civil engineering project
     image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop",
+      "https://res.cloudinary.com/dcxghlgre/image/upload/v1770459710/DeEhiedu%27s/424d25c8-3c6a-4c0a-8ec9-26876ca189e1.png",
     features: ["Roads & Bridges", "Structural Engineering", "Drainage Systems"],
   },
   {
@@ -44,7 +44,7 @@ export const sectors: BusinessSector[] = [
     href: "/hospitality",
     // Luxury resort pool area with amber sunset tones
     image:
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop",
+      "https://res.cloudinary.com/dcxghlgre/image/upload/v1770529187/DeEhiedu%27s/986c753e-7f2e-450d-9e35-0e4fb78dd2e2.png",
     features: ["Resort Management", "Event Centers", "Restaurant Operations"],
   },
   {
@@ -55,7 +55,7 @@ export const sectors: BusinessSector[] = [
     href: "/medical",
     // High-tech, bright medical facility / laboratory
     image:
-      "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2070&auto=format&fit=crop",
+      "https://res.cloudinary.com/dcxghlgre/image/upload/v1770529234/DeEhiedu%27s/4d0980ea-1252-43c4-9301-25bbebec325b.png",
     features: ["Equipment Supply", "Hospital Furnishing", "Medical Logistics"],
   },
   {
@@ -66,7 +66,7 @@ export const sectors: BusinessSector[] = [
     href: "/procurement",
     // Global logistics port at golden hour
     image:
-      "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop",
+      "https://res.cloudinary.com/dcxghlgre/image/upload/v1770529219/DeEhiedu%27s/aa5c00e4-23e1-4b62-8958-16615378ba74.png",
     features: ["Global Sourcing", "Import & Export", "Merchant Services"],
   },
 ]

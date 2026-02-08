@@ -1,5 +1,8 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion, Variants } from "framer-motion"
 import {
   Building,
   Key,
@@ -43,57 +46,81 @@ const reServices = [
 ]
 
 export default function ServiceGrid() {
+  // FIX: Explicitly type 'cardVariant' as 'Variants' to solve the ease string error
+  const cardVariant: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-slate-200">
-      {reServices.map((s) => (
-        <Card
+      {reServices.map((s, i) => (
+        <motion.div
           key={s.title}
-          className="group relative rounded-none border-r border-b border-slate-200 bg-white p-4 transition-all duration-300 hover:bg-slate-50"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ delay: i * 0.1 }} // Simple index-based stagger
+          variants={cardVariant}
         >
-          {/* Service ID - Subtle Amber Accent */}
-          <div className="absolute top-6 right-8 text-4xl font-black text-slate-100 group-hover:text-amber-500/20 transition-colors">
-            {s.id}
-          </div>
-
-          <CardHeader className="pt-8">
-            {/* Icon Box: Navy Background with Amber Icon */}
-            <div className="w-14 h-14 bg-blue-900 flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
-              <s.icon className="h-7 w-7 text-amber-500" />
+          <Card className="group relative rounded-none border-r border-b border-slate-200 bg-white p-4 transition-all duration-300 hover:bg-slate-50 h-full">
+            {/* Service ID */}
+            <div className="absolute top-6 right-8 text-4xl font-black text-slate-100 group-hover:text-amber-500/20 transition-colors">
+              {s.id}
             </div>
 
-            <CardTitle className="text-xl font-black uppercase tracking-tight text-blue-900 group-hover:text-amber-600 transition-colors">
-              {s.title}
-            </CardTitle>
-          </CardHeader>
+            <CardHeader className="pt-8">
+              <div className="w-14 h-14 bg-blue-900 flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                <s.icon className="h-7 w-7 text-amber-500" />
+              </div>
 
-          <CardContent className="pb-12">
-            <p className="text-slate-500 font-medium leading-relaxed mb-6">
-              {s.desc}
-            </p>
+              <CardTitle className="text-xl font-black uppercase tracking-tight text-blue-900 group-hover:text-amber-600 transition-colors">
+                {s.title}
+              </CardTitle>
+            </CardHeader>
 
-            {/* Industrial "Learn More" link style */}
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-900 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-              View Details <ArrowUpRight size={14} className="text-amber-500" />
-            </div>
-          </CardContent>
+            <CardContent className="pb-12">
+              <p className="text-slate-500 font-medium leading-relaxed mb-6">
+                {s.desc}
+              </p>
 
-          {/* Bottom Accent Line */}
-          <div className="absolute bottom-0 left-0 h-1 w-0 bg-amber-500 transition-all duration-500 group-hover:w-full" />
-        </Card>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-900 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                View Details{" "}
+                <ArrowUpRight size={14} className="text-amber-500" />
+              </div>
+            </CardContent>
+
+            <div className="absolute bottom-0 left-0 h-1 w-0 bg-amber-500 transition-all duration-500 group-hover:w-full" />
+          </Card>
+        </motion.div>
       ))}
 
-      {/* Empty CTA Card to fill the grid (Optional) */}
-      <div className="flex flex-col items-center justify-center bg-blue-900 p-8 text-center border-r border-b border-slate-200">
+      {/* CTA Card */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ delay: 0.5 }}
+        variants={cardVariant}
+        className="flex flex-col items-center justify-center bg-blue-900 p-8 text-center border-r border-b border-slate-200 min-h-75"
+      >
         <h3 className="text-xl font-black uppercase text-white mb-4">
           Request a Consultation
         </h3>
         <p className="text-blue-200 text-sm mb-6 uppercase tracking-wider font-bold">
           Speak with our experts today
         </p>
-        <Button  variant="amber" className="bg-amber-500 text-blue-900 font-black uppercase text-xs tracking-[0.2em] py-4 px-8 hover:bg-white transition-colors rounded-none">
+        <Button
+          variant="amber"
+          className="bg-amber-500 text-blue-900 font-black uppercase text-xs tracking-[0.2em] py-4 px-8 hover:bg-white transition-colors rounded-none"
+        >
           Contact Us
         </Button>
-      </div>
+      </motion.div>
     </div>
   )
 }

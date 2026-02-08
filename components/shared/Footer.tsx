@@ -9,6 +9,7 @@ import {
   Linkedin,
   ArrowRight,
 } from "lucide-react"
+import Image from "next/image"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -20,9 +21,12 @@ const Footer = () => {
           {/* 1. Company Bio */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="bg-blue-900 p-1.5 shadow-sm">
-                <Building2 className="h-6 w-6 text-amber-500" />
-              </div>
+              <Image
+                src="https://res.cloudinary.com/dcxghlgre/image/upload/v1770449762/DeEhiedu%27s/logo_xlpnec.png"
+                width={40}
+                height={40}
+                alt="logo"
+              />
               <span className="text-2xl font-black tracking-tighter text-blue-900 uppercase">
                 De Ehiedu&apos;s
               </span>
@@ -50,7 +54,7 @@ const Footer = () => {
             <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-blue-900">
               Our Business Sectors
             </h3>
-            <ul className="space-y-3 text-sm font-bold uppercase tracking-tight">
+            <ul className="space-y-3 text-sm font-bold tracking-tight">
               {[
                 { name: "Real Estate Development", href: "/real-estate" },
                 { name: "Civil Engineering", href: "/construction" },
@@ -61,10 +65,13 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="group flex items-center text-slate-500 transition-colors hover:text-amber-500"
+                    className="group flex items-center text-slate-500 transition-colors duration-300 hover:text-amber-500"
                   >
-                    <ArrowRight className="mr-2 h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
-                    {link.name}
+                    <span className="max-w-0 overflow-hidden opacity-0 -translate-x-2 transition-all duration-300 ease-out group-hover:max-w-4 group-hover:opacity-100 group-hover:translate-x-0">
+                      <ArrowRight className="h-3 w-3 mr-2 text-amber-500" />
+                    </span>
+
+                    <span>{link.name}</span>
                   </Link>
                 </li>
               ))}
@@ -72,7 +79,7 @@ const Footer = () => {
           </div>
 
           {/* 3. Quick Links */}
-          <div>
+          {/* <div>
             <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-blue-900">
               Corporate
             </h3>
@@ -94,7 +101,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* 4. Contact Info */}
           <div>
@@ -117,7 +124,10 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-slate-500">
                 <Mail className="h-4 w-4 text-amber-500" />
-                <span>contact@deehiedus.com</span>
+                <Link href="mailto:contact@deehiedus.com">
+                  contact@deehiedus.com
+                </Link>
+                
               </li>
             </ul>
           </div>
@@ -126,7 +136,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-16 border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-400">
           <p>
-            © {currentYear} De Ehiedu&apos;s Nigerian Limited. All rights
+            &copy; {currentYear} De Ehiedu&apos;s Nigerian Limited. All rights
             reserved.
           </p>
           <div className="flex gap-6">

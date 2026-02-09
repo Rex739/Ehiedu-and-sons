@@ -82,7 +82,7 @@ export default function HomePage() {
             priority
             unoptimized
           />
-          <div className="absolute inset-0 bg-blue-100/80" />
+          <div className="absolute inset-0  bg-linear-to-r from-blue-950 via-blue-950/90 to-blue-950/20" />
         </div>
 
         <div className="container relative z-10 mx-auto px-4">
@@ -102,7 +102,7 @@ export default function HomePage() {
 
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl font-black tracking-tighter text-blue-900 lg:text-8xl uppercase leading-[0.9]"
+              className="text-5xl font-black tracking-tighter text-blue-100 lg:text-8xl uppercase leading-[0.9]"
             >
               Building the Foundations of <br />
               <span className="text-amber-500">Global Progress</span> <br />
@@ -110,7 +110,7 @@ export default function HomePage() {
 
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-slate-600 max-w-2xl leading-relaxed lg:border-l lg:border-blue-200 lg:pl-6 font-normal"
+              className="text-xl text-blue-100 max-w-2xl leading-relaxed lg:border-l lg:border-blue-200 lg:pl-6 font-normal"
             >
               A diversified conglomerate delivering excellence across Real
               Estate, Construction, Hospitality, Healthcare Logistics, and
@@ -262,7 +262,7 @@ export default function HomePage() {
 
           {/* Grid Container - No animation trigger here anymore */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sectors.map((sector, index) => (
+            {sectors.map((sector) => (
               <motion.div
                 key={sector.id}
                 // FIX: Trigger animation individually for each card

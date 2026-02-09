@@ -1,5 +1,8 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Ship, Truck, Store, Landmark, ArrowRight } from "lucide-react"
+import { motion, Variants } from "framer-motion"
 
 const services = [
   {
@@ -28,59 +31,98 @@ const services = [
   },
 ]
 
+// --- ANIMATION VARIANTS ---
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+}
+
 export function SupplyChainGrid() {
   return (
     <section className="bg-white py-24 border-t border-slate-100">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 space-y-4">
-          <div className="flex items-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-2"
+          >
             <div className="h-1 w-12 bg-amber-500" />
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-blue-900">
               Operational Competencies
             </span>
-          </div>
-          <h2 className="text-4xl font-black tracking-tighter text-blue-900 uppercase sm:text-6xl">
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl font-black tracking-tighter text-blue-900 uppercase sm:text-6xl"
+          >
             Supply Chain <span className="text-amber-500">Solutions</span>
-          </h2>
+          </motion.h2>
         </div>
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+        >
           {services.map((service) => (
-            <Card
-              key={service.title}
-              className="group flex flex-col sm:flex-row rounded-none border border-slate-200 bg-white transition-all duration-300 hover:shadow-2xl hover:border-blue-900 overflow-hidden"
-            >
-              {/* Left: Icon Block (Industrial Navy) */}
-              <div className="flex items-center justify-center bg-blue-900 sm:w-40 min-h-40 transition-colors duration-500 group-hover:bg-amber-500">
-                <service.icon className="h-10 w-10 text-amber-500 transition-colors duration-500 group-hover:text-white" />
-              </div>
-
-              {/* Right: Content */}
-              <CardContent className="p-8 flex-1 relative">
-                {/* ID Tag */}
-                <span className="absolute top-4 right-6 text-[10px] font-black text-slate-300 uppercase tracking-widest group-hover:text-amber-500 transition-colors">
-                  {service.id}
-                </span>
-
-                <h3 className="text-xl font-black uppercase tracking-tighter text-blue-900 mb-3 group-hover:text-amber-600 transition-colors">
-                  {service.title}
-                </h3>
-
-                <p className="text-slate-500 font-medium text-sm leading-relaxed mb-6">
-                  {service.desc}
-                </p>
-
-                {/* Industrial Action Link */}
-                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-900 opacity-0 group-hover:opacity-100 transition-all transform -translate-x-2.5 group-hover:translate-x-0">
-                  Detailed Specifications{" "}
-                  <ArrowRight size={14} className="text-amber-500" />
+            <motion.div key={service.title} variants={fadeInUp}>
+              <Card className="group flex flex-col sm:flex-row rounded-none border border-slate-200 bg-white transition-all duration-300 hover:shadow-2xl hover:border-blue-900 overflow-hidden h-full">
+                {/* Left: Icon Block (Industrial Navy) */}
+                <div className="flex items-center justify-center bg-blue-900 sm:w-40 min-h-40 transition-colors duration-500 group-hover:bg-amber-500">
+                  <service.icon className="h-10 w-10 text-amber-500 transition-colors duration-500 group-hover:text-white" />
                 </div>
-              </CardContent>
-            </Card>
+
+                {/* Right: Content */}
+                <CardContent className="p-8 flex-1 relative">
+                  {/* ID Tag */}
+                  <span className="absolute top-4 right-6 text-[10px] font-black text-slate-300 uppercase tracking-widest group-hover:text-amber-500 transition-colors">
+                    {service.id}
+                  </span>
+
+                  <h3 className="text-xl font-black uppercase tracking-tighter text-blue-900 mb-3 group-hover:text-amber-600 transition-colors">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-500 font-medium text-sm leading-relaxed mb-6">
+                    {service.desc}
+                  </p>
+
+                  {/* Industrial Action Link */}
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-900 opacity-0 group-hover:opacity-100 transition-all transform -translate-x-2.5 group-hover:translate-x-0">
+                    Detailed Specifications{" "}
+                    <ArrowRight size={14} className="text-amber-500" />
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

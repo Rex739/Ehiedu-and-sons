@@ -1,11 +1,35 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ShoppingCart, ArrowRight } from "lucide-react"
 import Image from "next/image"
+import { motion, Variants } from "framer-motion"
 
 export function ProcurementHero() {
   // A high-quality image of global maritime/shipping logistics
   const procurementBg =
-    "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop"
+    "https://res.cloudinary.com/dcxghlgre/image/upload/v1770529219/DeEhiedu%27s/aa5c00e4-23e1-4b62-8958-16615378ba74.png"
+
+  // --- ANIMATION VARIANTS ---
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as const },
+    },
+  }
+
+  const heroContainer: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0, // Immediate start
+      },
+    },
+  }
 
   return (
     <section className="relative h-[75vh] min-h-150 flex items-center overflow-hidden bg-slate-100">
@@ -17,33 +41,51 @@ export function ProcurementHero() {
           className="h-full w-full object-cover"
           loading="eager"
           fill
+          unoptimized
         />
         {/* High-contrast white gradient to keep text sharp */}
-        <div className="absolute inset-0 bg-linear-to-r from-white via-white/50 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-blue-950 via-blue-950/90 to-blue-950/20" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4">
-        <div className="max-w-3xl space-y-8">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={heroContainer}
+          className="max-w-3xl space-y-8"
+        >
           {/* Industrial Badge - Hard Edged */}
-          <div className="inline-flex items-center rounded-none border-l-4 border-amber-500 bg-white shadow-sm px-4 py-2 text-sm font-bold uppercase tracking-widest text-blue-900">
+          <motion.div
+            variants={fadeInUp}
+            className="inline-flex items-center rounded-none border-l-4 border-amber-500 bg-white/10 backdrop-blur-sm px-4 py-2 text-sm font-bold uppercase tracking-widest text-white shadow-sm"
+          >
             <ShoppingCart className="mr-2 h-4 w-4 text-amber-500" />
             Supply Chain & General Contracts
-          </div>
+          </motion.div>
 
           {/* Headline - Bold Industrial Typography */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-blue-900 uppercase leading-[0.9]">
+          <motion.h1
+            variants={fadeInUp}
+            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-blue-100 uppercase leading-[0.9]"
+          >
             Reliable <br />
             <span className="text-amber-500">Procurement</span>
-          </h1>
+          </motion.h1>
 
-          <p className="text-xl md:text-2xl text-slate-600 max-w-xl leading-relaxed border-l-2 border-blue-200 pl-6 font-medium">
+          <motion.p
+            variants={fadeInUp}
+            className="text-xl md:text-2xl text-blue-100 max-w-xl leading-relaxed border-l-2 border-blue-200 pl-6 font-medium"
+          >
             Importers, exporters, and merchants of law-permissible goods. We
             bridge the gap between global manufacturers and your local
             requirements.
-          </p>
+          </motion.p>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <motion.div
+            variants={fadeInUp}
+            className="flex flex-col sm:flex-row gap-4 pt-4"
+          >
             <Button
               variant="amber"
               size="lg"
@@ -59,12 +101,17 @@ export function ProcurementHero() {
             >
               Partner Brands
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Decorative Brand Accent Line */}
-      <div className="absolute bottom-0 left-0 w-full h-2 bg-amber-500" />
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.5, delay: 0.5, ease: "circOut" }}
+        className="absolute bottom-0 left-0 w-full h-2 bg-amber-500 origin-left"
+      />
     </section>
   )
 }

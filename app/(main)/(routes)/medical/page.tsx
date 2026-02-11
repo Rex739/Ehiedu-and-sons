@@ -45,7 +45,7 @@ const scaleIn: Variants = {
 export default function MedicalLogisticsPage() {
   return (
     <main className="flex flex-col min-h-screen bg-white">
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION (Handles its own animation) */}
       <MedicalHero />
 
       {/* 2. SCOPE OVERVIEW (Industrial Light Style) */}
@@ -166,7 +166,7 @@ export default function MedicalLogisticsPage() {
         </motion.div>
       </section>
 
-      {/* 3. SPECIALIZED SERVICES & MAINTENANCE SECTIONS */}
+      {/* 3. SPECIALIZED SERVICES & MAINTENANCE SECTIONS (Handle their own animation) */}
       <SpecializedServices />
       <MaintenanceSection />
 

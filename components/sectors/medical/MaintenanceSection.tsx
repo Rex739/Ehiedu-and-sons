@@ -1,3 +1,5 @@
+"use client"
+
 import {
   CheckCircle2,
   Settings,
@@ -5,6 +7,7 @@ import {
   Clock,
   PenTool,
 } from "lucide-react"
+import { motion, Variants } from "framer-motion"
 
 export function MaintenanceSection() {
   const maintenanceFeatures = [
@@ -14,6 +17,32 @@ export function MaintenanceSection() {
     "User Training & Safety Workshops",
     "Equipment Calibration & Certification",
   ]
+
+  // --- ANIMATION VARIANTS ---
+  const smoothOptions = {
+    duration: 0.8,
+    ease: [0.25, 0.1, 0.25, 1] as const,
+  }
+
+  const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: smoothOptions,
+    },
+  }
+
+  const staggerContainer: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
+      },
+    },
+  }
 
   return (
     <section className="relative py-24 bg-blue-900 overflow-hidden">
@@ -27,10 +56,16 @@ export function MaintenanceSection() {
       />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-20 items-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="flex flex-col lg:flex-row gap-20 items-center"
+        >
           {/* Left Side: Service Description */}
           <div className="flex-1 space-y-8">
-            <div className="space-y-4">
+            <motion.div variants={fadeInUp} className="space-y-4">
               <div className="flex items-center gap-2">
                 <div className="h-1 w-12 bg-amber-500" />
                 <span className="text-xs font-bold uppercase tracking-[0.3em] text-blue-100">
@@ -41,69 +76,98 @@ export function MaintenanceSection() {
                 Equipment <br />
                 <span className="text-amber-500">Lifecycle Management</span>
               </h2>
-            </div>
+            </motion.div>
 
-            <p className="text-blue-100 text-xl font-medium leading-relaxed max-w-xl">
-              De Ehiedu&apos;s doesn&apos;t just supply; we ensure your clinical equipment
-              performs at peak accuracy for years. Our technical contracts are
-              engineered to eliminate downtime.
-            </p>
+            <motion.p
+              variants={fadeInUp}
+              className="text-blue-100 text-xl font-medium leading-relaxed max-w-xl"
+            >
+              De Ehiedu&apos;s doesn&apos;t just supply; we ensure your clinical
+              equipment performs at peak accuracy for years. Our technical
+              contracts are engineered to eliminate downtime.
+            </motion.p>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+            <motion.ul
+              variants={staggerContainer}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8"
+            >
               {maintenanceFeatures.map((item) => (
-                <li key={item} className="flex items-start gap-3">
+                <motion.li
+                  key={item}
+                  variants={fadeInUp}
+                  className="flex items-start gap-3"
+                >
                   <CheckCircle2 className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
                   <span className="text-sm font-bold uppercase tracking-wide text-white">
                     {item}
                   </span>
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </div>
 
           {/* Right Side: High-Impact Stat Blocks */}
-          <div className="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-white/5 border border-white/10 p-10 flex flex-col items-center justify-center text-center group hover:bg-amber-500 transition-colors duration-500">
-              <ShieldCheck className="h-8 w-8 text-amber-500 mb-4 group-hover:text-blue-900" />
-              <span className="text-4xl font-black text-white group-hover:text-blue-900 tracking-tighter">
+          <motion.div
+            variants={staggerContainer}
+            className="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-4"
+          >
+            {/* Block 1 */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-white/5 border border-white/10 p-10 flex flex-col items-center justify-center text-center group hover:bg-amber-500 transition-colors duration-500"
+            >
+              <ShieldCheck className="h-8 w-8 text-amber-500 mb-4 group-hover:text-blue-900 transition-colors" />
+              <span className="text-4xl font-black text-white group-hover:text-blue-900 tracking-tighter transition-colors">
                 99.9%
               </span>
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200 mt-2 group-hover:text-blue-900">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200 mt-2 group-hover:text-blue-900 transition-colors">
                 Uptime Guarantee
               </span>
-            </div>
+            </motion.div>
 
-            <div className="bg-white/5 border border-white/10 p-10 flex flex-col items-center justify-center text-center group hover:bg-amber-500 transition-colors duration-500">
-              <Clock className="h-8 w-8 text-amber-500 mb-4 group-hover:text-blue-900" />
-              <span className="text-4xl font-black text-white group-hover:text-blue-900 tracking-tighter">
+            {/* Block 2 */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-white/5 border border-white/10 p-10 flex flex-col items-center justify-center text-center group hover:bg-amber-500 transition-colors duration-500"
+            >
+              <Clock className="h-8 w-8 text-amber-500 mb-4 group-hover:text-blue-900 transition-colors" />
+              <span className="text-4xl font-black text-white group-hover:text-blue-900 tracking-tighter transition-colors">
                 24/7
               </span>
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200 mt-2 group-hover:text-blue-900">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200 mt-2 group-hover:text-blue-900 transition-colors">
                 Technical Support
               </span>
-            </div>
+            </motion.div>
 
-            <div className="bg-white/5 border border-white/10 p-10 flex flex-col items-center justify-center text-center group hover:bg-amber-500 transition-colors duration-500">
-              <Settings className="h-8 w-8 text-amber-500 mb-4 group-hover:text-blue-900" />
-              <span className="text-4xl font-black text-white group-hover:text-blue-900 tracking-tighter">
+            {/* Block 3 */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-white/5 border border-white/10 p-10 flex flex-col items-center justify-center text-center group hover:bg-amber-500 transition-colors duration-500"
+            >
+              <Settings className="h-8 w-8 text-amber-500 mb-4 group-hover:text-blue-900 transition-colors" />
+              <span className="text-4xl font-black text-white group-hover:text-blue-900 tracking-tighter transition-colors">
                 ISO
               </span>
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200 mt-2 group-hover:text-blue-900">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200 mt-2 group-hover:text-blue-900 transition-colors">
                 Calibration Standards
               </span>
-            </div>
+            </motion.div>
 
-            <div className="bg-white/5 border border-white/10 p-10 flex flex-col items-center justify-center text-center group hover:bg-amber-500 transition-colors duration-500">
-              <PenTool className="h-8 w-8 text-amber-500 mb-4 group-hover:text-blue-900" />
-              <span className="text-4xl font-black text-white group-hover:text-blue-900 tracking-tighter">
+            {/* Block 4 */}
+            <motion.div
+              variants={fadeInUp}
+              className="bg-white/5 border border-white/10 p-10 flex flex-col items-center justify-center text-center group hover:bg-amber-500 transition-colors duration-500"
+            >
+              <PenTool className="h-8 w-8 text-amber-500 mb-4 group-hover:text-blue-900 transition-colors" />
+              <span className="text-4xl font-black text-white group-hover:text-blue-900 tracking-tighter transition-colors">
                 100%
               </span>
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200 mt-2 group-hover:text-blue-900">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200 mt-2 group-hover:text-blue-900 transition-colors">
                 OEM Spare Parts
               </span>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )

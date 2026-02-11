@@ -1,3 +1,6 @@
+"use client"
+
+import { motion, Variants } from "framer-motion"
 import ConstructionHero from "@/components/sectors/construction/Hero"
 import { EngineeringExpertise } from "@/components/sectors/construction/EngineeringExpertise"
 import { InfrastructureShowcase } from "@/components/sectors/construction/InfrastructureShowcase"
@@ -5,20 +8,62 @@ import { Button } from "@/components/ui/button"
 import { HardHat, Ruler, ShieldCheck, FileText } from "lucide-react"
 import Image from "next/image"
 
+// --- CONSISTENT ANIMATION VARIANTS ---
+const smoothOptions = {
+  duration: 0.8,
+  ease: [0.25, 0.1, 0.25, 1] as const,
+}
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: smoothOptions,
+  },
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: smoothOptions,
+  },
+}
+
 export default function ConstructionPage() {
   // VERIFIED: Large-scale structural rebar and concrete construction site
   const structuralImage =
-    "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2070&auto=format&fit=crop"
+    "https://res.cloudinary.com/dcxghlgre/image/upload/v1770626191/DeEhiedu%27s/d98968ab-80ee-45dd-827f-9840d7142d0e.png"
+
   return (
     <main className="flex flex-col min-h-screen bg-white">
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION (Handles its own animation) */}
       <ConstructionHero />
 
       {/* 2. CAPABILITIES OVERVIEW */}
       <section className="container mx-auto py-24 px-4 bg-white">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="flex flex-col lg:flex-row gap-16 items-center"
+        >
           {/* Left Side: Content */}
-          <div className="flex-1 space-y-8">
+          <motion.div variants={fadeInUp} className="flex-1 space-y-8">
             <div className="inline-flex items-center rounded-none border-l-4 border-amber-500 bg-blue-50 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-900">
               Technical Excellence
             </div>
@@ -42,20 +87,27 @@ export default function ConstructionPage() {
                 { icon: Ruler, text: "Precision Engineering" },
                 { icon: HardHat, text: "Expert Site Management" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 group">
+                <motion.div
+                  key={i}
+                  variants={fadeInUp}
+                  className="flex items-center gap-3 group"
+                >
                   <div className="bg-slate-100 p-2 group-hover:bg-amber-500 transition-colors">
                     <item.icon className="h-5 w-5 text-blue-900 group-hover:text-white" />
                   </div>
                   <span className="font-bold uppercase tracking-tight text-sm text-blue-900">
                     {item.text}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Side: Correct Structural Image with Amber Frame */}
-          <div className="flex-1 w-full aspect-square relative">
+          {/* Right Side: Structural Image */}
+          <motion.div
+            variants={scaleIn}
+            className="flex-1 w-full aspect-square relative"
+          >
             <div className="absolute -top-4 -right-4 w-full h-full border-4 border-amber-500 z-0" />
 
             <div className="relative z-10 w-full h-full overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
@@ -69,19 +121,19 @@ export default function ConstructionPage() {
               />
               <div className="absolute inset-0 bg-blue-900/10" />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* 3. CORE COMPETENCIES Grid */}
+      {/* 3. CORE COMPETENCIES Grid (Handles its own animation) */}
       <EngineeringExpertise />
 
-      {/* 4. SELECTED PROJECTS Showcase */}
+      {/* 4. SELECTED PROJECTS Showcase (Existing Component) */}
       <InfrastructureShowcase />
 
       {/* 5. TENDER/BIDDING CTA */}
       <section className="bg-blue-900 py-24 relative overflow-hidden">
-        {/* Subtle Grid Pattern Overlay - Set to 0.02 Opacity */}
+        {/* Subtle Grid Pattern Overlay */}
         <div
           className="absolute inset-0 opacity-[0.02] pointer-events-none select-none"
           style={{
@@ -90,23 +142,41 @@ export default function ConstructionPage() {
           }}
         />
 
-        <div className="container mx-auto px-4 text-center space-y-10 relative z-10">
-          <div className="inline-flex p-3 bg-amber-500 text-blue-950 mb-2 shadow-lg">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="container mx-auto px-4 text-center space-y-10 relative z-10"
+        >
+          <motion.div
+            variants={fadeInUp}
+            className="inline-flex p-3 bg-amber-500 text-blue-950 mb-2 shadow-lg"
+          >
             <FileText size={32} />
-          </div>
+          </motion.div>
 
-          <h2 className="text-4xl font-black md:text-7xl text-white uppercase tracking-tighter leading-none">
+          <motion.h2
+            variants={fadeInUp}
+            className="text-4xl font-black md:text-7xl text-white uppercase tracking-tighter leading-none"
+          >
             Have a Large-Scale <br />
             <span className="text-amber-500">Project?</span>
-          </h2>
+          </motion.h2>
 
-          <p className="max-w-2xl mx-auto text-blue-100 text-lg font-medium uppercase tracking-wide leading-relaxed">
+          <motion.p
+            variants={fadeInUp}
+            className="max-w-2xl mx-auto text-blue-100 text-lg font-medium uppercase tracking-wide leading-relaxed"
+          >
             De Ehiedu&apos;s is open to tenders and private contracts for roads,
             bridges, and structural engineering works. Let&apos;s discuss your
             technical requirements.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6 pt-4">
+          <motion.div
+            variants={fadeInUp}
+            className="flex flex-col sm:flex-row justify-center gap-6 pt-4"
+          >
             <Button
               variant="amber"
               size="lg"
@@ -118,12 +188,12 @@ export default function ConstructionPage() {
             <Button
               size="lg"
               variant="outline"
-              className="h-16 px-12 rounded-none border-2  border-white text-white hover:bg-white hover:text-blue-900 bg-transparent  font-bold uppercase tracking-[0.2em] text-lg transition-all"
+              className="h-16 px-12 rounded-none border-2 border-white text-white hover:bg-white hover:text-blue-900 bg-transparent font-bold uppercase tracking-[0.2em] text-lg transition-all"
             >
               Technical Profile
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
     </main>
   )

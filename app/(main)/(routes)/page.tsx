@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion"
 import { SectorCard } from "@/components/sectors/SectorCard"
 import { sectors } from "@/lib/config/services"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"// 
 import {
   CheckCircle2,
   Globe,
@@ -19,6 +19,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import AboutSection from "@/components/sectors/home/About"
 
 export default function HomePage() {
   const heroImage =
@@ -32,20 +33,20 @@ export default function HomePage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15, // Smooth ripple
-        delayChildren: 0, // <--- ZERO DELAY for Hero
+        staggerChildren: 0.15,
+        delayChildren: 0,
       },
     },
   }
 
-  // 2. Scroll Sections Container (Slight Delay for smoothness)
+  // 2. Scroll Sections Container
   const scrollContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.1, // Keep delay for scroll sections so they don't pop in too aggressively
+        delayChildren: 0.1,
       },
     },
   }
@@ -55,7 +56,7 @@ export default function HomePage() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }, // Apple-style smooth curve
+      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] },
     },
   }
 
@@ -88,13 +89,13 @@ export default function HomePage() {
         <div className="container relative z-10 mx-auto px-4">
           <motion.div
             initial="hidden"
-            animate="visible" // <--- CHANGED from 'whileInView' to 'animate' for instant load
-            variants={heroContainer} // <--- CHANGED to 'heroContainer'
+            animate="visible"
+            variants={heroContainer}
             className="max-w-4xl space-y-8"
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center rounded-none border-l-4 border-amber-500 bg-white shadow-sm px-4 py-2 text-sm font-bold uppercase tracking-widest text-blue-900"
+              className="inline-flex items-center rounded-none border-l-4 border-amber-500 bg-white/10 backdrop-blur-sm px-4 py-2 text-sm font-bold uppercase tracking-widest text-white shadow-sm"
             >
               <HardHat className="mr-2 h-4 w-4 text-amber-500" />
               industrial Engineering Solutions for 2026
@@ -148,7 +149,7 @@ export default function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            variants={scrollContainer} // Use scrollContainer for rest of page
+            variants={scrollContainer}
             className="grid grid-cols-2 md:grid-cols-4 gap-12"
           >
             {[
@@ -234,7 +235,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. CORE SECTORS GRID - Mobile Scroll Fix */}
+      {/* 5. CORE SECTORS GRID */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 space-y-16">
           {/* Header animates as a block */}
@@ -260,22 +261,21 @@ export default function HomePage() {
             </motion.p>
           </motion.div>
 
-          {/* Grid Container - No animation trigger here anymore */}
+          {/* Grid Container */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sectors.map((sector) => (
               <motion.div
                 key={sector.id}
-                // FIX: Trigger animation individually for each card
                 initial="hidden"
                 whileInView="visible"
                 viewport={{
-                  once: true, // Run only once
-                  margin: "-50px", // Start when card is 50px inside the screen
+                  once: true,
+                  margin: "-50px",
                 }}
                 transition={{
                   duration: 0.8,
                   ease: [0.25, 0.1, 0.25, 1],
-                  delay: 0.1, // Tiny delay so it doesn't feel robotic
+                  delay: 0.1,
                 }}
                 variants={fadeInUp}
               >
@@ -286,7 +286,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. WHY CHOOSE US - Granular List Animation */}
+      {/* 6. WHY CHOOSE US */}
       <section className="bg-slate-50 py-24 border-y border-slate-200">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -371,7 +371,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. TESTIMONIALS SECTION */}
+      {/* 7. TESTIMONIALS SECTION */}
       <section className="py-24 bg-blue-900 text-white relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10"
@@ -478,8 +478,9 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
-
-      {/* 7. FINAL CALL TO ACTION */}
+      {/*  ABOUT & LEADERSHIP SECTION (NEWLY ADDED) */}
+      <AboutSection />
+      {/* 8. FINAL CALL TO ACTION */}
       <section className="container mx-auto py-24 px-4">
         <motion.div
           initial="hidden"
@@ -506,12 +507,14 @@ export default function HomePage() {
           >
             <Button
               variant="amber"
+              size="lg"
               className="px-12 h-16 rounded-none font-bold uppercase tracking-[0.2em] text-lg border-2 border-transparent shadow-lg hover:shadow-xl transition-shadow"
             >
               Get a Quote
             </Button>
             <Button
               variant="outline"
+              size="lg"
               className="h-16 px-10 rounded-none border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white bg-transparent font-bold uppercase tracking-[0.2em] text-lg transition-all"
             >
               Brochure

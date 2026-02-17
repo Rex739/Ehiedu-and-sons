@@ -74,7 +74,7 @@ export function MedicalHero() {
 
           <motion.p
             variants={fadeInUp}
-            className="text-xl md:text-2xl text-blue-100 max-w-xl leading-relaxed border-l-2 border-blue-200 pl-6 font-medium"
+            className="text-xl md:text-2xl text-blue-100 max-w-xl leading-relaxed lg:border-l-2 lg:border-blue-200 lg:pl-6 font-medium"
           >
             Expert supply, installation, and maintenance of medical equipment,
             facility design, and specialized medical waste management.

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Microscope, ArrowRight, ShieldCheck } from "lucide-react"
 import Image from "next/image"
 import { motion, Variants } from "framer-motion"
+import Link from "next/link"
 
 export function MedicalHero() {
   // A clean, high-tech laboratory or clinical environment image
@@ -85,14 +86,17 @@ export function MedicalHero() {
             variants={fadeInUp}
             className="flex flex-col sm:flex-row gap-4 pt-4"
           >
-            <Button
-              variant="amber"
-              size="lg"
-              className="h-16 px-10 rounded-none text-lg font-bold uppercase tracking-widest shadow-lg"
-            >
-              Our Services
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link href="#medical_services" >
+              <Button
+                variant="amber"
+                size="lg"
+                className="h-16 px-10 rounded-none text-lg font-bold uppercase tracking-widest shadow-lg"
+              >
+                Our Services
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+
             <Button
               size="lg"
               variant="outline"

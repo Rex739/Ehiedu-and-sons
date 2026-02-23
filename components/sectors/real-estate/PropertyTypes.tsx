@@ -69,14 +69,14 @@ export function PropertyTypes() {
         </motion.div>
 
         <Tabs defaultValue="residential" className="w-full">
-          <TabsList className="flex h-auto w-full max-w-2xl bg-slate-50 p-1 rounded-none border border-slate-200 mb-8">
+          <TabsList className="grid grid-cols-1 ms:grid-cols-3 h-auto w-full max-w-2xl bg-slate-50 p-1 rounded-none border border-slate-200 mb-8 gap-1 sm:gap-0">
             {propertyContent.map((item) => (
               <TabsTrigger
                 key={item.value}
                 value={item.value}
-                className="flex-1 py-4 text-xs font-bold uppercase tracking-widest rounded-none transition-all
-                  data-[state=active]:bg-blue-900 data-[state=active]:text-white data-[state=active]:shadow-lg
-                  data-[state=inactive]:text-slate-500 hover:text-blue-900"
+                className="py-3 sm:py-4 text-[10px] sm:text-xs font-bold uppercase tracking-widest rounded-none transition-all
+        data-[state=active]:bg-blue-900 data-[state=active]:text-white data-[state=active]:shadow-lg
+        data-[state=inactive]:text-slate-500 hover:text-blue-900 w-full justify-center"
               >
                 {item.icon}
                 {item.value}

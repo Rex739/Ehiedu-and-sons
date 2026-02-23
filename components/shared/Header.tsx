@@ -27,6 +27,9 @@ const Header: FC = () => {
   const [isAtTop, setIsAtTop] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
 
+  // State to control mobile menu visibility
+  const [isOpen, setIsOpen] = useState(false)
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
@@ -58,13 +61,10 @@ const Header: FC = () => {
           // --- TARGETED STYLE LOGIC ---
           isAtTop
             ? cn(
-                // Mobile: Glassmorphism at top
                 "max-lg:bg-white/70 max-lg:backdrop-blur-md max-lg:border-b max-lg:border-white/20 max-lg:shadow-sm",
-                // Desktop: Pure transparency at top
                 "lg:bg-transparent lg:border-transparent py-0",
               )
             : cn(
-                // Scrolled State (Both): Solid/Semi-solid White
                 "bg-white/95 lg:bg-white lg:backdrop-blur-none border-b border-slate-100 shadow-md py-0",
               ),
         )}
@@ -80,7 +80,6 @@ const Header: FC = () => {
                 alt="logo"
                 className={cn(
                   "w-10 h-9 lg:w-11 xl:w-14 xl:h-12 transition-all duration-300",
-                  // Only invert logo on desktop when at top
                   isAtTop
                     ? "lg:brightness-0 lg:invert"
                     : "brightness-100 invert-0",
@@ -90,7 +89,6 @@ const Header: FC = () => {
             <span
               className={cn(
                 "text-base md:text-lg lg:text-base xl:text-2xl font-black tracking-tighter uppercase transition-colors duration-300",
-                // Mobile stays Navy for glass, Desktop is White on Hero
                 isAtTop ? "text-blue-900 lg:text-white" : "text-blue-900",
               )}
             >
@@ -145,7 +143,7 @@ const Header: FC = () => {
               Get a quote
             </Button>
 
-            {/* 4. MOBILE TRIGGER */}
+            {/* 4. MOBILE TRIGGER & SHEET */}
             <div className="lg:hidden flex items-center gap-2">
               <a
                 href="tel:+2348163802826"
@@ -154,7 +152,7 @@ const Header: FC = () => {
                 <Phone size={20} className="text-amber-500" />
               </a>
 
-              <Sheet>
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
                   <Button
                     variant="ghost"
@@ -168,7 +166,6 @@ const Header: FC = () => {
                   side="right"
                   className="w-full sm:max-w-100 border-l-4 border-amber-500 bg-white p-0 z-60"
                 >
-                  {/* ... mobile sheet content remains the same ... */}
                   <div className="flex flex-col h-full">
                     <SheetHeader className="text-left border-b border-slate-100 p-6">
                       <SheetTitle className="flex items-center space-x-2">
@@ -189,6 +186,7 @@ const Header: FC = () => {
                         <Link
                           key={link.href}
                           href={link.href}
+                          onClick={() => setIsOpen(false)} // CLOSES MENU ON CLICK
                           className="group flex items-center justify-between px-4 py-4 text-lg font-black uppercase tracking-widest text-blue-900 hover:bg-slate-50 transition-colors border-b border-slate-50"
                         >
                           {link.name}
@@ -201,6 +199,7 @@ const Header: FC = () => {
                       <Button
                         variant="amber"
                         className="w-full h-14 rounded-none font-bold uppercase tracking-widest text-base shadow-lg"
+                        onClick={() => setIsOpen(false)} // OPTIONAL: ALSO CLOSES ON BUTTON CLICK
                       >
                         Get a quote
                       </Button>

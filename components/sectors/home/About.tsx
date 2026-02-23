@@ -6,7 +6,7 @@ import Image from "next/image"
 
 export default function AboutSection() {
   const ceoImage =
-    "https://res.cloudinary.com/dcxghlgre/image/upload/v1770805964/DeEhiedu%27s/11701ed0-78a5-465e-adb6-f503d60c09f1.png"
+    "https://res.cloudinary.com/dcxghlgre/image/upload/v1771428238/DeEhiedu%27s/file_0000000074f47246a83308761163a739_smc8xm.png"
 
   // --- ANIMATION VARIANTS ---
   const fadeInUp: Variants = {
@@ -86,7 +86,11 @@ export default function AboutSection() {
           </div>
 
           {/* RIGHT SIDE: CEO Profile */}
-          <motion.div variants={fadeInUp} className="relative">
+          <motion.div
+            variants={fadeInUp}
+            className="relative"
+            id="meet_the_ceo"
+          >
             {/* Background Accent */}
             <div className="absolute top-0 right-0 w-3/4 h-full bg-blue-100/50 -z-10 translate-x-8 -translate-y-8" />
 
@@ -94,7 +98,7 @@ export default function AboutSection() {
               {" "}
               {/* Added margin-bottom for mobile spacing */}
               {/* Image Container */}
-              <div className="relative aspect-4/5 w-full max-w-md mx-auto lg:mx-0 overflow-hidden shadow-2xl border-b-8 border-amber-500">
+              <div className="relative aspect-[3.5/5] w-full max-w-md mx-auto lg:mx-0 overflow-hidden shadow-2xl border-b-8 border-amber-500">
                 <div className="relative w-full h-full">
                   <Image
                     src={ceoImage}

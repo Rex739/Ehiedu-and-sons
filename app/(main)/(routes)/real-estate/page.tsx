@@ -121,7 +121,7 @@ export default function RealEstatePage() {
             <Button
               size="lg"
               variant="amber"
-              className="h-16 px-12 rounded-none font-bold uppercase tracking-[0.2em] text-lg shadow-xl hover:shadow-2xl transition-all"
+              className="h-16 px-12 rounded-none font-bold uppercase tracking-[0.2em] text-sm ms:text-lg shadow-xl hover:shadow-2xl transition-all"
             >
               Book a Consultancy Session
             </Button>

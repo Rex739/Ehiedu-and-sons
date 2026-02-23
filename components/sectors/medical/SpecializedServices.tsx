@@ -60,7 +60,10 @@ const staggerContainer: Variants = {
 
 export function SpecializedServices() {
   return (
-    <section className="py-24 bg-white border-t border-slate-100">
+    <section
+      className="py-24 bg-white border-t border-slate-100"
+      id="medical_services"
+    >
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 space-y-4">
@@ -96,11 +99,11 @@ export function SpecializedServices() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-slate-200"
         >
-          {services.map((service, i) => (
+          {services.map((service) => (
             <motion.div key={service.title} variants={fadeInUp}>
               <Card className="rounded-none border-none border-r border-b border-slate-200 bg-white transition-all duration-500 group relative overflow-hidden h-full shadow-none hover:shadow-xl hover:z-10">
                 {/* Top Detail Bar */}
-               <div className="absolute top-0 left-0 w-full h-1 bg-blue-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-blue-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
                 <CardHeader className="pt-12 pb-6 px-8 space-y-6">
                   {/* Industrial Icon Block */}

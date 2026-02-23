@@ -128,7 +128,7 @@ export default function HomePage() {
                 asChild
                 className="h-16 px-10 rounded-none text-lg font-bold uppercase tracking-widest shadow-md"
               >
-                <Link href="/contact">Partner With Us</Link>
+                <Link href="mailto:contact@deehiedus.com">Partner With Us</Link>
               </Button>
               <Button
                 size="lg"

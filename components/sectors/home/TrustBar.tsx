@@ -1,11 +1,9 @@
-import { motion } from "framer-motion"
+"use client"
+
+import { motion, useReducedMotion } from "framer-motion"
 import { Factory, Box, Building, Anchor, ShieldCheck } from "lucide-react"
 
-export default function TrustBar({
-  shouldReduceMotion,
-}: {
-  shouldReduceMotion: boolean
-}) {
+export default function TrustBar({}) {
   const logos = [
     { icon: Factory, name: "Indus-Corp" },
     { icon: Box, name: "Logix-Global" },
@@ -13,6 +11,9 @@ export default function TrustBar({
     { icon: Anchor, name: "Marine-Co" },
     { icon: ShieldCheck, name: "Apex-Security" },
   ]
+
+  // Hook to detect if the user prefers reduced motion (accessibility best practice)
+  const shouldReduceMotion = useReducedMotion()
 
   return (
     <section

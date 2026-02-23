@@ -1,4 +1,3 @@
-"use client"
 
 import Hero from "@/components/sectors/home/Hero"
 import AboutSection from "@/components/sectors/home/About"
@@ -8,12 +7,9 @@ import Stats from "@/components/sectors/home/Stats"
 import Testimonials from "@/components/sectors/home/Testimonials"
 import TrustBar from "@/components/sectors/home/TrustBar"
 import WhyChooseUs from "@/components/sectors/home/WhyChooseUs"
-import { useReducedMotion } from "framer-motion"
-
 
 export default function HomePage() {
-  // Hook to detect if the user prefers reduced motion (accessibility best practice)
-  const shouldReduceMotion = useReducedMotion()
+
 
   return (
     <main className="flex flex-col min-h-screen bg-white text-slate-900">
@@ -22,7 +18,7 @@ export default function HomePage() {
       {/* 2. Key Performance Indicators */}
       <Stats />
       {/* 3. Social Proof: Animated Trust Bar */}
-      <TrustBar shouldReduceMotion={shouldReduceMotion ?? false} />
+      <TrustBar />
       {/* 4. Core Business Offerings */}
       <SectorsGrid />
       {/* 5. Value Proposition & Certifications */}
@@ -36,5 +32,3 @@ export default function HomePage() {
     </main>
   )
 }
-
-

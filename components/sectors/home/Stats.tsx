@@ -1,3 +1,5 @@
+"use client"
+
 import { scrollContainer } from "@/lib/motion"
 import { motion } from "framer-motion"
 
